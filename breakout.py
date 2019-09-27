@@ -2,6 +2,7 @@ import os
 from time import sleep
 import turtle
 
+playing = True
 
 # Funcao para criar a janela (screen)
 def create_screen(title, width, height):
@@ -11,6 +12,12 @@ def create_screen(title, width, height):
     screen.setup(width=width, height=height)
     screen.tracer(0)
     return screen
+
+# Funcao que e chamada ao fechar a janela
+# Usada para finalizar o game loop
+def close_screen():
+    global playing
+    playing = not playing
 
 # Funcao para criar o turtle das raquetes
 def create_paddle(x, y, width, height, color):
@@ -45,3 +52,6 @@ def create_hud(x,y):
     hud.goto(x, y)
     return hud
 
+screen = create_screen ("Breakout", 600, 1000)
+root = screen.getcanvas().winfo_toplevel()
+root.protocol("WM_DELETE_WINDOW", close_screen)

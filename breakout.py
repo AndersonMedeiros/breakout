@@ -1,57 +1,143 @@
+# background: https://www.pexels.com/photo/milky-way-photo-2873671/
+
 import os
-from time import sleep
+import time
 import turtle
 
-playing = True
 
-# Funcao para criar a janela (screen)
-def create_screen(title, width, height):
-    screen = turtle.Screen()
-    screen.title(title)
-    screen.bgcolor("black")
-    screen.setup(width=width, height=height)
-    screen.tracer(0)
-    return screen
+# escrever mensagens e texos
+def write_message(sprite, text, size):
+    sprite.write(text, align='center', font=('Tlwg Typo', size, 'bold'))
 
-# Funcao que e chamada ao fechar a janela
-# Usada para finalizar o game loop
-def close_screen():
+
+# desenhar quaisquer sprites
+def drawn_sprites(shape, color, x, y):
+    sprite = turtle.Turtle()
+    sprite.hideturtle()
+    sprite.speed(0)
+    sprite.shape(shape)
+    sprite.color(color)
+    sprite.penup()
+    sprite.goto(x, y)
+    return sprite
+
+
+# variável para verificar a inicialização do jogo
+playing = False
+
+# criando uma única tela para o jogo inteiro (da linha 28 a linha 125)
+screen = turtle.Screen()
+screen.title('Breakout')
+screen.bgpic('sky.gif')
+screen.setup(width=700, height=700)
+screen.tracer(100)
+screen.update()
+
+
+# criando o menu inicial
+def create_menu():
+    global title
+    title = drawn_sprites('square', '#E0FFFF', 0, 80)
+    write_message(title, 'Breakout', 90)
+
+    global op1
+    op1 = drawn_sprites('square', '#E0FFFF', 0, -20)
+    write_message(op1, 'Play', 40)
+
+    global op2
+    op2 = drawn_sprites('square', '#E0FFFF', 0, -80)
+    write_message(op2, 'Help', 40)
+
+    global op3
+    op3 = drawn_sprites('square', '#E0FFFF', 0, -140)
+    write_message(op3, 'Exit', 40)
+
+    global select
+    select = drawn_sprites('arrow', '#E0FFFF', -100, 15)
+    select.showturtle()
+
+    screen.update()
+
+create_menu()
+
+
+# movimentação pelo menu
+def down_select():
+    y = select.ycor()
+    if y > -105:
+        y += -60
+    select.sety(y)
+
+
+def up_select():
+    y = select.ycor()
+    if y < 15:
+        y += 60
+    select.sety(y)
+
+
+# selecionando algum item do menu
+def go_ahead():
+    y = select.ycor()
+
+    # impede que o usuário selecione as opções enquanto elas estão invisíveis
+    select.sety(300)
+
+    # apagando o menu
+    select.hideturtle()
+    title.clear()
+    op1.clear()
+    op2.clear()
+    op3.clear()
+
+    # dentro das opções do menu
+    global read
+    read = drawn_sprites('square', 'white', 0, 0)
+    if y == 15:
+        # inicia o jogo
+        global playing
+        playing = True
+    elif y == -45:
+        # mostra as instruções do jogo
+        write_message(read, 'Vou pensar no que\npôr aqui ainda', 20)
+    elif y == -105:
+        # encerra o jogo
+        screen.bye()
+
+
+# voltando para o menu
+def go_back():
+    read.clear()
+    # encerra o jogo de imediato
     global playing
-    playing = not playing
+    playing = False
+    screen.update()
+    # reacria o menu
+    create_menu()
 
-# Funcao para criar o turtle das raquetes
-def create_paddle(x, y, width, height, color):
-    paddle = turtle.Turtle()
-    paddle.speed(0)
-    paddle.shape("square")
-    paddle.color(color)
-    paddle.shapesize(stretch_wid=width, stretch_len=height)
-    paddle.penup()
-    paddle.goto(x, y)
-    return paddle
 
-# Funcao para criar o turtle da bola
-def create_ball(x, y, color):
-    ball = turtle.Turtle()
-    ball.speed(0)
-    ball.shape("circle")
-    ball.color(color)
-    ball.penup()
-    ball.goto(x, y)
-    ball.dx = 0.5
-    ball.dy = 0.5
-    return ball
+# escutando as escolhas do usuário
+screen.listen()
+screen.onkeypress(down_select, 'Down')
+screen.onkeypress(up_select, 'Up')
+screen.onkeypress(go_ahead, 'space')
+screen.onkeypress(go_back, 'BackSpace')
+screen.update()
 
-def create_hud(x,y):
-    hud = turtle.Turtle()
-    hud.speed(0)
-    hud.shape("square")
-    hud.color("white")
-    hud.penup()
-    hud.hideturtle()
-    hud.goto(x, y)
-    return hud
 
-screen = create_screen ("Breakout", 600, 1000)
+# aqui começa o jogo de fato (eu acho...)
+# esse é apenas um protótipo para testar a inicialização do jogo
+ball = drawn_sprites('circle', 'black', 0, 0)
+while True:
+    if playing:
+        # mostrando os sprites do jogo
+        ball.showturtle()
+        ball.goto(100, 100)
+        ball.goto(-100, -100)
+    else:
+        # escondendo os sprites do jogo
+        ball.hideturtle()
+
+# não entendi para o que isso serve, então não mudei
 root = screen.getcanvas().winfo_toplevel()
 root.protocol("WM_DELETE_WINDOW", close_screen)

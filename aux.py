@@ -8,7 +8,7 @@ def write_message(sprite, text, size):
     sprite.write(text, align='center', font=('Tlwg Typo', size, 'bold'))
 
 
-# desenhar quaisquer sprites
+# desenhar quaisquer sprites (inclusive a bola e a raquete)
 def drawn_sprites(shape, color, x, y):
     sprite = turtle.Turtle()
     sprite.hideturtle()

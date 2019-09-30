@@ -29,7 +29,3 @@ while True:
     else:
         # escondendo os sprites do jogo
         ball.hideturtle()
-
-# não entendi para o que isso serve, então não mudei
-root = screen.getcanvas().winfo_toplevel()
-root.protocol("WM_DELETE_WINDOW", close_screen)

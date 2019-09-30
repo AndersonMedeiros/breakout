@@ -3,7 +3,7 @@
 <b>Developers:</b>
 
 - <b>Name:</b> Anderson de Paula Andrade Medeiros; <b>Email:</b> andersonandrade.30@gmail.com
-- <b>Name:</b> Gabriel Teixeira; <b>Email:</b> 
+- <b>Name:</b> Gabriel Alexander Farias de Lima Teixeira; <b>Email:</b> gafdlt.snf19@uea.edu.br 
 - <b>Name:</b> Yasmin Maria Muniz de Oliveira; <b>Email:</b> ymmdo.snf19@uea.edu.br
 - <b>Name:</b> Daniely Dantas; <b>Email:</b> ddl.snf18@uea.edu.br
 - <b>Name:</b> Rafael Maquiné Lopes; <b>Email:</b> rml.snf19@uea.edu.br

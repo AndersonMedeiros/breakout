@@ -2,6 +2,7 @@ import aux
 import turtle
 
 
+
 # variável para verificar a inicialização do jogo
 playing = False
 
@@ -91,20 +92,25 @@ def go_ahead():
     elif y == -45:
         # mostra as instruções do jogo
         instructions = '''
-Pressione as setas direita e esquerda
-para movimentar a raquete e rebater a
-bola. O objetivo é atingir e destruir
-o máximo de tijolos possível com ela.\n
-Mas cuidado! A bola aumenta de velo-
-cidade e o tamanho da raquete diminui
-        conforme você pontua!
-(vou pôr isso em inglês depois...)'''
+Press the left and right keys to move 
+the paddle and counter the ball. The 
+goal is to hit and destroy as many 
+bricks as you can. \nBut be careful! 
+The ball speeds up and the paddle gets
+smaller whenever you make points!
+'''
         text.sety(-140)
         aux.write_message(text, instructions, 20)
     elif y == -105:
         # mostra os desenvolvedores
         developers = '''
 Developed by:
+Anderson Medeiros
+Danielle Dantas
+Elikson Bastos
+Gabriel Teixeira
+Rafael Maquiné
+Yasmin Muniz
 '''
         text.sety(0)
         aux.write_message(text, developers, 20)

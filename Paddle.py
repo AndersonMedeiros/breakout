@@ -25,9 +25,7 @@ def move_paddle_right():
 paddle = turtle.Turtle()
 screen = turtle.Screen()
 
-screen.bgcolor('#000000')
-screen.setup(width=700, height=700)
-screen.tracer(100)
+
 
 def create_paddle ():
     paddle.speed(0)
@@ -39,8 +37,8 @@ def create_paddle ():
 
 
 
-while True:
 
+def Create_and_move_Paddle():
     screen.listen()
 
     screen.onkeypress(move_paddle_left, 'a')
@@ -51,3 +49,9 @@ while True:
     paddle.goto(0, -310)
 
     screen.update()
+    
+
+
+while True:
+
+    Create_and_move_Paddle()

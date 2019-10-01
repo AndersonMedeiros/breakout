@@ -49,8 +49,8 @@ score_board = aux.drawn_sprites('square', '#E0FFFF', -130, 270)
 def game_over():
 
     ball.hideturtle()
-    ball.dx = -0.5
-    ball.dy = -1.5
+    ball.dx = -0.2
+    ball.dy = -0.7
     ball.goto(0, 0)
 
     paddle.hideturtle()
@@ -114,7 +114,8 @@ def start_game():
         aux.write_message(life_board, 'Life: {}'.format(life), 20)
         os.system('arts/aplay arcade-bleep-sound.wav&')
         ball.goto(0, 0)
-        ball.dy *= -1
+        ball.dx = -0.2
+        ball.dy = -0.7
 
     # fim de jogo (quantidade de vidas zerada)
     if life == 0:

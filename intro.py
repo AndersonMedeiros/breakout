@@ -11,7 +11,7 @@ def create_screen():
     global screen
     screen = turtle.Screen()
     screen.title('Breakout')
-    screen.bgpic('sky.gif')
+    screen.bgpic('arts/sky.gif')
     screen.setup(width=700, height=700)
     screen.tracer(100)
     screen.update()
@@ -39,6 +39,8 @@ def create_menu():
     aux.write_message(options, 'Credit', 40)
     options.sety(-200)
     aux.write_message(options, 'Exit', 40)
+    options.sety(320)
+    aux.write_message(options, 'Press "Space" to select', 13)
 
     global select
     select = aux.drawn_sprites('arrow', '#E0FFFF', -120, 15)
@@ -99,7 +101,7 @@ Press the left and right keys to move
         developers = '''
 Developed by:
 Anderson Medeiros
-Daniely Dantas
+Danielle Dantas
 Elikson Bastos
 Gabriel Teixeira
 Rafael Maquiné

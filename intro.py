@@ -2,7 +2,6 @@ import aux
 import turtle
 
 
-
 # variável para verificar a inicialização do jogo
 playing = False
 
@@ -31,21 +30,15 @@ def create_menu():
         title.color(colors[i])
         aux.write_message(title, letters[i], 90)
 
-    global op1
-    op1 = aux.drawn_sprites('square', '#E0FFFF', 0, -20)
-    aux.write_message(op1, 'Play', 40)
-
-    global op2
-    op2 = aux.drawn_sprites('square', '#E0FFFF', 0, -80)
-    aux.write_message(op2, 'Help', 40)
-
-    global op3
-    op3 = aux.drawn_sprites('square', '#E0FFFF', 0, -140)
-    aux.write_message(op3, 'Credit', 40)
-
-    global op4
-    op4 = aux.drawn_sprites('square', '#E0FFFF', 0, -200)
-    aux.write_message(op4, 'Exit', 40)
+    global options
+    options = aux.drawn_sprites('square', '#E0FFFF', 0, -20)
+    aux.write_message(options, 'Play', 40)
+    options.sety(-80)
+    aux.write_message(options, 'Help', 40)
+    options.sety(-140)
+    aux.write_message(options, 'Credit', 40)
+    options.sety(-200)
+    aux.write_message(options, 'Exit', 40)
 
     global select
     select = aux.drawn_sprites('arrow', '#E0FFFF', -120, 15)
@@ -77,10 +70,7 @@ def go_ahead():
     # apaga o menu
     select.hideturtle()
     title.clear()
-    op1.clear()
-    op2.clear()
-    op3.clear()
-    op4.clear()
+    options.clear()
 
     # interior de cada opção do menu
     global text
@@ -91,15 +81,18 @@ def go_ahead():
         playing = True
     elif y == -45:
         # mostra as instruções do jogo
+        # os vários espaços são para deixar o texto centralizado
         instructions = '''
-Press the left and right keys to move 
-the paddle and counter the ball. The 
-goal is to hit and destroy as many 
-bricks as you can. \nBut be careful! 
-The ball speeds up and the paddle gets
-smaller whenever you make points!
+Press the left and right keys to move
+   the paddle and counter the ball.
+  The goal is to hit and destroy as
+       many blocks as you can.\n
+           But be careful!
+ The ball speeds up and the paddle
+   gets smaller whenever you make
+               points!
 '''
-        text.sety(-140)
+        text.sety(-180)
         aux.write_message(text, instructions, 20)
     elif y == -105:
         # mostra os desenvolvedores
@@ -110,13 +103,19 @@ Daniely Dantas
 Elikson Bastos
 Gabriel Teixeira
 Rafael Maquiné
-Yasmin Muniz
+Yasmin Oliveira
 '''
-        text.sety(0)
+        text.sety(-100)
         aux.write_message(text, developers, 20)
     elif y == -165:
         # encerra o jogo
         screen.bye()
+
+    text.sety(320)
+    aux.write_message(text, 'Press "BackSpace" to return', 13)
+    # por enquanto, eu deixei a opção de voltar na tela do jogo
+    # também para o usuário ter a opção de retornar ao menu
+    # a qualquer momento.
 
 
 # voltar para o menu

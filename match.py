@@ -4,7 +4,6 @@ import os
 import time
 import turtle
 
-
 # criando a bola
 ball = aux.drawn_sprites('circle', '#E0FFFF', 0, 0)
 
@@ -101,6 +100,12 @@ def start_game():
         os.system('arts/aplay bounce.wav&')
         ball.setx(340)
         ball.dx *= -1
+
+    # colisão com a parede superior
+    if ball.ycor() < 340:
+        os.system('arts/aplay bounce.wav&')
+        ball.sety(340)
+        ball.dy *= -1
 
     # colisão com a parede inferior
     if ball.ycor() < -340:

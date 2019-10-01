@@ -102,7 +102,7 @@ def start_game():
         ball.dx *= -1
 
     # colisão com a parede superior
-    if ball.ycor() < 340:
+    if ball.ycor() > 340:
         os.system('arts/aplay bounce.wav&')
         ball.sety(340)
         ball.dy *= -1

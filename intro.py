@@ -106,7 +106,7 @@ smaller whenever you make points!
         developers = '''
 Developed by:
 Anderson Medeiros
-Danielle Dantas
+Daniely Dantas
 Elikson Bastos
 Gabriel Teixeira
 Rafael Maquiné

@@ -90,11 +90,10 @@ Press the left and right keys to move
   The goal is to hit and destroy as
        many blocks as you can.\n
            But be careful!
- The ball speeds up and the paddle
-   gets smaller whenever you make
-               points!
+  The ball speeds up whenever you
+            make points!
 '''
-        text.sety(-180)
+        text.sety(-170)
         aux.write_message(text, instructions, 20)
     elif y == -105:
         # mostra os desenvolvedores
@@ -103,11 +102,10 @@ Press the left and right keys to move
  Yasmin Muniz de Oliveira
       Rafael Maquiné
      Gabriel Teixeira
-      Elikson Bastos
       Daniely Dantas
 Anderson de Paula Medeiros
 '''
-        text.sety(-150)
+        text.sety(-130)
         aux.write_message(text, developers, 20)
     elif y == -165:
         # encerra o jogo
@@ -115,9 +113,6 @@ Anderson de Paula Medeiros
 
     text.sety(320)
     aux.write_message(text, 'Press "BackSpace" to return', 13)
-    # por enquanto, eu deixei a opção de voltar na tela do jogo
-    # também para o usuário ter a opção de retornar ao menu
-    # a qualquer momento.
 
 
 # voltar para o menu

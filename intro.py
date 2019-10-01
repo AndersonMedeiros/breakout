@@ -99,15 +99,15 @@ Press the left and right keys to move
     elif y == -105:
         # mostra os desenvolvedores
         developers = '''
-Developed by:
-Anderson Medeiros
-Danielle Dantas
-Elikson Bastos
-Gabriel Teixeira
-Rafael Maquiné
-Yasmin Oliveira
+        Developers:
+ Yasmin Muniz de Oliveira
+      Rafael Maquiné
+     Gabriel Teixeira
+      Elikson Bastos
+      Daniely Dantas
+Anderson de Paula Medeiros
 '''
-        text.sety(-100)
+        text.sety(-150)
         aux.write_message(text, developers, 20)
     elif y == -165:
         # encerra o jogo

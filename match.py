@@ -168,19 +168,19 @@ def start_game():
 
     # colisão com a parede esquerda
     if ball.xcor() < -340:
-        os.system('arts/aplay bounce.wav&')
+        os.system('aplay arts/bounce.wav&')
         ball.setx(-340)
         ball.dx *= -1
 
     # colisão com a parede direita
     if ball.xcor() > 340:
-        os.system('arts/aplay bounce.wav&')
+        os.system('aplay arts/bounce.wav&')
         ball.setx(340)
         ball.dx *= -1
 
     # colisão com a parede superior
     if ball.ycor() > 340:
-        os.system('arts/aplay bounce.wav&')
+        os.system('aplay arts/bounce.wav&')
         ball.sety(340)
         ball.dy *= -1
 
@@ -189,7 +189,7 @@ def start_game():
         life -= 1
         life_board.clear()
         aux.write_message(life_board, 'Life: {}'.format(life), 20)
-        os.system('arts/aplay arcade-bleep-sound.wav&')
+        os.system('aplay arts/arcade-bleep-sound.wav&')
         global speed_ball
         speed_ball = 1
         set_ball()
@@ -234,7 +234,7 @@ def start_game():
             print(speed_ball)
             direction_angle(150)
 
-        os.system('arts/aplay bounce.wav&')
+        os.system('aplay arts/bounce.wav&')
 
 
      # definindo colisão com os blocos
@@ -249,6 +249,7 @@ def start_game():
                     score_board.clear()
                     aux.write_message(score_board, 'Score: ' + str(score), 20)
                     brick_on[item] = 0
+                    os.system('aplay arts/bounce.wav&')
             xpos += 100
 
     if ball.ycor() > 159.3 and ball.ycor() < 160.7:
@@ -262,6 +263,7 @@ def start_game():
                     score_board.clear()
                     aux.write_message(score_board, 'Score: ' + str(score), 20)
                     brick_on[item] = 0
+                    os.system('aplay arts/bounce.wav&')
             xpos += 100
 
     if ball.ycor() > 199.3 and ball.ycor() < 200.7:
@@ -275,6 +277,7 @@ def start_game():
                     score_board.clear()
                     aux.write_message(score_board, 'Score: ' + str(score), 20)
                     brick_on[item] = 0
+                    os.system('aplay arts/bounce.wav&')
             xpos += 100
 
     if ball.ycor() > 239.3 and ball.ycor() < 240.7:
@@ -288,6 +291,7 @@ def start_game():
                     score_board.clear()
                     aux.write_message(score_board, 'Score: ' + str(score), 20)
                     brick_on[item] = 0
+                    os.system('aplay arts/bounce.wav&')
             xpos += 100
 
 

@@ -11,13 +11,13 @@ ball = aux.drawn_sprites('circle', '#E0FFFF', 0, 0)
 
 # definir por onde a bola começa a se mover
 def set_ball():
-    ball.goto(0, 0)
+    ball.goto(0, 200)
     possibily = random.randint(1, 2)
     if possibily == 1:
-        ball.dx = 0.5
+        ball.dx = 0.2
     else:
-        ball.dx = -0.5
-    ball.dy = -1.5
+        ball.dx = -0.2
+    ball.dy = -1
 
 
 # movimentação da bola
@@ -28,25 +28,25 @@ def movement_ball(ball):
 
 # criando a raquete
 paddle = aux.drawn_sprites('square', '#191970', 0, 0)
-paddle.shapesize(stretch_wid=0.5, stretch_len=4)
+paddle.shapesize(stretch_wid=0.7, stretch_len=5)
 
 
-# movimentação a raquete
+# movimentação da raquete
 def move_paddle_left():
     x = paddle.xcor()
-    if x > -300:
+    if x > -290:
         x -= 10
     else:
-        x = -300
+        x = -290
     paddle.setx(x)
 
 
 def move_paddle_right():
     x = paddle.xcor()
-    if x < 300:
+    if x < 290:
         x += 10
     else:
-        x = 300
+        x = 290
     paddle.setx(x)
 
 
@@ -98,6 +98,16 @@ def start_game():
 
     # movimentando a bola
     movement_ball(ball)
+
+    # colisão com a raquete
+    if (ball.ycor() == -300 and
+       ball.xcor() > paddle.xcor() - 60 and
+       ball.xcor() < paddle.xcor() + 60):
+        ball.dy *= -1
+    if (ball.ycor() < -300 and
+       (ball.xcor() == paddle.xcor() - 60 and
+       ball.xcor() == paddle.xcor() + 60)):
+        ball.dy *= -1
 
     # colisão com a parede esquerda
     if ball.xcor() < -340:

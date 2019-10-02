@@ -1,18 +1,19 @@
 import aux
 import intro
+import math
 import os
 import random
 import time
 import turtle
-import math
 
 # criando a bola
 ball = aux.drawn_sprites('circle', '#E0FFFF', 0, 0)
-speed_ball = 2
 
 
 # definir por onde a bola começa a se mover
 def set_ball():
+    global speed_ball
+    speed_ball = 2
     ball.goto(0, 0)
     possibily = random.randint(1, 2)
     if possibily == 1:
@@ -61,7 +62,7 @@ def move_paddle_right():
 
 
 # criando os blocos
-def create_brick (color):
+def create_brick(color):
     brick = aux.drawn_sprites('square', color, 0, 0)
     brick.shapesize(stretch_wid=0.7, stretch_len=2)
     return brick
@@ -70,11 +71,13 @@ def create_brick (color):
 # criando as linhas de blocos
 global brick_list
 brick_list = []
-def brick_wall ():
+
+
+def brick_wall():
     y_position = 240
-    for ycolor in range (4):
+    for ycolor in range(4):
         x_position = -260
-        for _ in range (6):
+        for _ in range(6):
             if ycolor == 0:
                 colory = 'Red'
             elif ycolor == 1:
@@ -84,32 +87,25 @@ def brick_wall ():
             elif ycolor == 3:
                 colory = 'Green'
             brick = create_brick(colory)
-            brick.goto(x_position,y_position)
+            brick.goto(x_position, y_position)
             brick_list.append(brick)
             x_position += 100
         y_position -= 40
 
-# função para criar e mostrar os blocos 
+
+# função para criar e mostrar os blocos
 brick_wall()
-global brick_len 
+global brick_len
 brick_len = len(brick_list)
 
-global brick_on
-brick_on = []
-for i in range (1,25):
-    brick_on.append(i)
 
-
-def hide_bricks ():
-    for item in range (brick_len):
-        if (intro.already_playing == False):
-            break
+def hide_bricks():
+    for item in range(brick_len):
         brick_list[item].hideturtle()
 
-def show_bricks ():
-    for item in range (brick_len):
-        if (intro.already_playing == True):
-            break
+
+def show_bricks():
+    for item in range(brick_len):
         brick_list[item].showturtle()
 
 
@@ -122,9 +118,11 @@ score_board = aux.drawn_sprites('square', '#E0FFFF', -130, 270)
 
 # escondendo e resetando a bola, a raquete e os painéis
 def game_over():
+    global brick_on
+    brick_on = list(range(1, 25))
+    hide_bricks()
+
     ball.hideturtle()
-    global speed_ball
-    speed_ball = 1
     set_ball()
 
     paddle.hideturtle()
@@ -139,9 +137,6 @@ def game_over():
     score_board.goto(-130, 270)
     global score
     score = 0
-
-    for i in range (1,25):
-        brick_on[i-1] = i
 
 
 # criando o jogo
@@ -162,6 +157,7 @@ def start_game():
     if score == 0:
         score_board.clear()
         aux.write_message(score_board, 'Score: 0', 20)
+        show_bricks()
 
     # movimentando a bola
     movement_ball(ball)
@@ -190,8 +186,6 @@ def start_game():
         life_board.clear()
         aux.write_message(life_board, 'Life: {}'.format(life), 20)
         os.system('aplay arts/arcade-bleep-sound.wav&')
-        global speed_ball
-        speed_ball = 1
         set_ball()
 
     # colisão com a raquete
@@ -227,11 +221,10 @@ def start_game():
 
         os.system('aplay arts/bounce.wav&')
 
-
-     # definindo colisão com os blocos
+    # definindo colisão com os blocos
     if ball.ycor() > 119.3 and ball.ycor() < 120.7:
         xpos = -260
-        for item in range (18,24):
+        for item in range(18, 24):
             if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
                 if (brick_on[item] != 0):
                     brick_list[item].hideturtle()
@@ -245,7 +238,7 @@ def start_game():
 
     if ball.ycor() > 159.3 and ball.ycor() < 160.7:
         xpos = -260
-        for item in range (12,18):
+        for item in range(12, 18):
             if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
                 if (brick_on[item] != 0):
                     brick_list[item].hideturtle()
@@ -259,7 +252,7 @@ def start_game():
 
     if ball.ycor() > 199.3 and ball.ycor() < 200.7:
         xpos = -260
-        for item in range (6,12):
+        for item in range(6, 12):
             if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
                 if (brick_on[item] != 0):
                     brick_list[item].hideturtle()
@@ -273,7 +266,7 @@ def start_game():
 
     if ball.ycor() > 239.3 and ball.ycor() < 240.7:
         xpos = -260
-        for item in range (0,6):
+        for item in range(0, 6):
             if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
                 if (brick_on[item] != 0):
                     brick_list[item].hideturtle()

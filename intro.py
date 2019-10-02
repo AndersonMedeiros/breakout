@@ -1,10 +1,10 @@
 import aux
+import time
 import turtle
 
 
 # variável para verificar a inicialização do jogo
 playing = False
-already_playing = False
 
 
 # criar a tela do jogo
@@ -18,11 +18,19 @@ def create_screen():
     screen.update()
     return screen
 
+global title
+title = aux.drawn_sprites('square', 'black', 0, 80)
+global options
+options = aux.drawn_sprites('square', '#E0FFFF', 0, -20)
+global select
+select = aux.drawn_sprites('arrow', '#E0FFFF', -120, 15)
+global text
+text = aux.drawn_sprites('square', '#E0FFFF', 0, 0)
+
 
 # criar o menu inicial
 def create_menu():
-    global title
-    title = aux.drawn_sprites('square', 'black', 0, 80)
+
     colors = ['#FF6347', '#E9967A', '#F0E68C', '#00FF7F',
               '#40E0D0', '#1E90FF', '#7B68EE', '#EE82EE']
     letters = ['B       ', ' r      ', '  e     ', '   a    ',
@@ -31,8 +39,7 @@ def create_menu():
         title.color(colors[i])
         aux.write_message(title, letters[i], 90)
 
-    global options
-    options = aux.drawn_sprites('square', '#E0FFFF', 0, -20)
+    options.sety(-20)
     aux.write_message(options, 'Play', 40)
     options.sety(-80)
     aux.write_message(options, 'Help', 40)
@@ -43,8 +50,7 @@ def create_menu():
     options.sety(320)
     aux.write_message(options, 'Press "Space" or "Enter" to select', 13)
 
-    global select
-    select = aux.drawn_sprites('arrow', '#E0FFFF', -120, 15)
+    select.goto(-120, 15)
     select.showturtle()
 
 
@@ -76,8 +82,6 @@ def go_ahead():
     options.clear()
 
     # interior de cada opção do menu
-    global text
-    text = aux.drawn_sprites('square', '#E0FFFF', 0, 0)
     if y == 15:
         # inicia o jogo
         global playing
@@ -87,7 +91,7 @@ def go_ahead():
         # os vários espaços são para deixar o texto centralizado
         instructions = '''
 Press the left and right keys or the
-    "A" and "D" keys to move
+      "A" and "D" keys to move
    the paddle and counter the ball.
   The goal is to hit and destroy as
        many blocks as you can.\n

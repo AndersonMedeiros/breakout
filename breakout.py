@@ -2,6 +2,7 @@
 
 import intro
 import match
+import time
 import turtle
 
 # criando a tela do jogo e o menu
@@ -17,27 +18,19 @@ screen.onkeypress(intro.down_select, 's')
 screen.onkeypress(intro.up_select, 'Up')
 screen.onkeypress(intro.up_select, 'w')
 screen.onkeypress(intro.go_ahead, 'space')
-screen.onkeypress(intro.go_ahead, 'Return')
 screen.onkeypress(intro.go_back, 'BackSpace')
-screen.onkeypress(intro.go_back, 'Escape')
 screen.update()
 # movimentação da raquete durante o jogo
 screen.onkeypress(match.move_paddle_left, 'Left')
-screen.onkeypress(match.move_paddle_left, 'a')
 screen.onkeypress(match.move_paddle_right, 'Right')
-screen.onkeypress(match.move_paddle_right, 'd')
 screen.update()
 
 # aqui começa o jogo de fato
 while True:
-    screen.update()
     if intro.playing:
         # mostrando os sprites do jogo
         match.start_game()
-        match.show_bricks()
-        intro.already_playing = True
     else:
         # escondendo os sprites do jogo
         match.game_over()
-        match.hide_bricks()
-        intro.already_playing = False
+    screen.update()

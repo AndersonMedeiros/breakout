@@ -4,6 +4,7 @@ import turtle
 
 # variável para verificar a inicialização do jogo
 playing = False
+already_playing = False
 
 
 # criar a tela do jogo

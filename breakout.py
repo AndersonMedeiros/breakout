@@ -28,6 +28,10 @@ while True:
     if intro.playing:
         # mostrando os sprites do jogo
         match.start_game()
+        match.show_bricks()
+        intro.already_playing = True
     else:
         # escondendo os sprites do jogo
         match.game_over()
+        match.hide_bricks()
+        intro.already_playing = False

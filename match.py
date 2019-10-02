@@ -4,9 +4,11 @@ import os
 import random
 import time
 import turtle
+import math
 
 # criando a bola
 ball = aux.drawn_sprites('circle', '#E0FFFF', 0, 0)
+speed_ball = 0.5
 
 
 # definir por onde a bola começa a se mover
@@ -14,10 +16,9 @@ def set_ball():
     ball.goto(0, 200)
     possibily = random.randint(1, 2)
     if possibily == 1:
-        ball.dx = 0.2
+        direction_angle(285)
     else:
-        ball.dx = -0.2
-    ball.dy = -1
+        direction_angle(255)
 
 
 # movimentação da bola
@@ -26,16 +27,25 @@ def movement_ball(ball):
     ball.sety(ball.ycor() + ball.dy)
 
 
+# ângulo de direção da bola
+def direction_angle(angle):
+    ball.dx = speed_ball * math.cos(math.radians(angle))
+    ball.dy = speed_ball * math.sin(math.radians(angle))
+
+
 # criando a raquete
+wid_paddle = 0.7
+len_paddle = 5
+TAM_ONE_SEG = (len_paddle*10)/4
 paddle = aux.drawn_sprites('square', '#191970', 0, 0)
-paddle.shapesize(stretch_wid=0.7, stretch_len=5)
+paddle.shapesize(stretch_wid=wid_paddle, stretch_len=len_paddle)
 
 
 # movimentação da raquete
 def move_paddle_left():
     x = paddle.xcor()
     if x > -290:
-        x -= 10
+        x -= 20
     else:
         x = -290
     paddle.setx(x)
@@ -44,7 +54,7 @@ def move_paddle_left():
 def move_paddle_right():
     x = paddle.xcor()
     if x < 290:
-        x += 10
+        x += 20
     else:
         x = 290
     paddle.setx(x)
@@ -59,8 +69,9 @@ score_board = aux.drawn_sprites('square', '#E0FFFF', -130, 270)
 
 # escondendo e resetando a bola, a raquete e os painéis
 def game_over():
-
     ball.hideturtle()
+    global speed_ball
+    speed_ball = 0.5
     set_ball()
 
     paddle.hideturtle()
@@ -99,16 +110,6 @@ def start_game():
     # movimentando a bola
     movement_ball(ball)
 
-    # colisão com a raquete
-    if (ball.ycor() == -300 and
-       ball.xcor() > paddle.xcor() - 60 and
-       ball.xcor() < paddle.xcor() + 60):
-        ball.dy *= -1
-    if (ball.ycor() < -300 and
-       (ball.xcor() == paddle.xcor() - 60 and
-       ball.xcor() == paddle.xcor() + 60)):
-        ball.dy *= -1
-
     # colisão com a parede esquerda
     if ball.xcor() < -340:
         os.system('arts/aplay bounce.wav&')
@@ -133,7 +134,52 @@ def start_game():
         life_board.clear()
         aux.write_message(life_board, 'Life: {}'.format(life), 20)
         os.system('arts/aplay arcade-bleep-sound.wav&')
+        global speed_ball
+        speed_ball = 0.5
         set_ball()
+
+    # colisão com a raquete
+    if ball.ycor() < -300 and ball.xcor() < paddle.xcor() + 50 and \
+            ball.xcor() > paddle.xcor() - 50:
+        if ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 4 and \
+                ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * 3:
+            print(speed_ball)
+            direction_angle(30)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 3 and \
+                ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * 2:
+            print(speed_ball)
+            direction_angle(45)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 2 and \
+                ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * 1:
+            print(speed_ball)
+            direction_angle(60)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 1 and \
+                ball.xcor() > paddle.xcor() + TAM_ONE_SEG * 0:
+            print(speed_ball)
+            direction_angle(85)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 1 and \
+                ball.xcor() == paddle.xcor() + TAM_ONE_SEG * 0:
+            print(speed_ball)
+            direction_angle(90)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 0 and \
+                ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -1:
+            print(speed_ball)
+            direction_angle(100)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * -1 and \
+                ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -2:
+            print(speed_ball)
+            direction_angle(120)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * -2 and \
+                ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -3:
+            print(speed_ball)
+            direction_angle(135)
+        elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * -3 and \
+                ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -4:
+            print(speed_ball)
+            direction_angle(150)
+
+        speed_ball += 0.1
+        os.system('arts/aplay bounce.wav&')
 
     # fim de jogo (quantidade de vidas zerada)
     if life == 0:

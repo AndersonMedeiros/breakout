@@ -13,7 +13,7 @@ def create_screen():
     screen.title('Breakout')
     screen.bgpic('arts/sky.gif')
     screen.setup(width=700, height=700)
-    screen.tracer(100)
+    screen.tracer(2)
     screen.update()
     return screen
 

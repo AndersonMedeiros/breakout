@@ -2,7 +2,6 @@
 
 import intro
 import match
-import time
 import turtle
 
 # criando a tela do jogo e o menu
@@ -14,9 +13,7 @@ screen.update()
 screen.listen()
 # movimentação pelo menu
 screen.onkeypress(intro.down_select, 'Down')
-screen.onkeypress(intro.down_select, 's')
 screen.onkeypress(intro.up_select, 'Up')
-screen.onkeypress(intro.up_select, 'w')
 screen.onkeypress(intro.go_ahead, 'space')
 screen.onkeypress(intro.go_back, 'BackSpace')
 screen.update()
@@ -27,10 +24,10 @@ screen.update()
 
 # aqui começa o jogo de fato
 while True:
+    screen.update()
     if intro.playing:
         # mostrando os sprites do jogo
         match.start_game()
     else:
         # escondendo os sprites do jogo
         match.game_over()
-    screen.update()

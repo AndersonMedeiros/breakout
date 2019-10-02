@@ -1,5 +1,4 @@
 import aux
-import time
 import turtle
 
 
@@ -14,7 +13,7 @@ def create_screen():
     screen.title('Breakout')
     screen.bgpic('arts/sky.gif')
     screen.setup(width=700, height=700)
-    screen.tracer(2)
+    screen.tracer(100)
     screen.update()
     return screen
 
@@ -48,7 +47,7 @@ def create_menu():
     options.sety(-200)
     aux.write_message(options, 'Exit', 40)
     options.sety(320)
-    aux.write_message(options, 'Press "Space" or "Enter" to select', 13)
+    aux.write_message(options, 'Press "Space" to select', 13)
 
     select.goto(-120, 15)
     select.showturtle()
@@ -88,10 +87,8 @@ def go_ahead():
         playing = True
     elif y == -45:
         # mostra as instruções do jogo
-        # os vários espaços são para deixar o texto centralizado
         instructions = '''
 Press the left and right keys or the
-      "A" and "D" keys to move
    the paddle and counter the ball.
   The goal is to hit and destroy as
        many blocks as you can.\n
@@ -118,7 +115,7 @@ Anderson de Paula Medeiros
         screen.bye()
 
     text.sety(320)
-    aux.write_message(text, 'Press "BackSpace" or "Escape" to return', 13)
+    aux.write_message(text, 'Press "BackSpace" to return', 13)
 
 
 # voltar para o menu

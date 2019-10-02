@@ -45,7 +45,7 @@ paddle.shapesize(stretch_wid=wid_paddle, stretch_len=len_paddle)
 def move_paddle_left():
     x = paddle.xcor()
     if x > -290:
-        x -= 20
+        x -= 30
     else:
         x = -290
     paddle.setx(x)
@@ -54,7 +54,7 @@ def move_paddle_left():
 def move_paddle_right():
     x = paddle.xcor()
     if x < 290:
-        x += 20
+        x += 30
     else:
         x = 290
     paddle.setx(x)
@@ -124,6 +124,7 @@ score_board = aux.drawn_sprites('square', '#E0FFFF', -130, 270)
 def game_over():
     ball.hideturtle()
     global speed_ball
+    speed_ball = 1
     set_ball()
 
     paddle.hideturtle()
@@ -190,11 +191,11 @@ def start_game():
         aux.write_message(life_board, 'Life: {}'.format(life), 20)
         os.system('arts/aplay arcade-bleep-sound.wav&')
         global speed_ball
-        '''speed_ball = 0.5'''
+        speed_ball = 1
         set_ball()
 
     # colisão com a raquete
-    if ball.ycor() < -300 and ball.xcor() < paddle.xcor() + 50 and \
+    if ball.ycor() < -292 and ball.xcor() < paddle.xcor() + 50 and \
             ball.xcor() > paddle.xcor() - 50:
         if ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 4 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * 3:
@@ -233,7 +234,6 @@ def start_game():
             print(speed_ball)
             direction_angle(150)
 
-        '''speed_ball += 0.1'''
         os.system('arts/aplay bounce.wav&')
 
 

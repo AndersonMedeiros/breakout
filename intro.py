@@ -41,7 +41,7 @@ def create_menu():
     options.sety(-200)
     aux.write_message(options, 'Exit', 40)
     options.sety(320)
-    aux.write_message(options, 'Press "Space" to select', 13)
+    aux.write_message(options, 'Press "Space" or "Enter" to select', 13)
 
     global select
     select = aux.drawn_sprites('arrow', '#E0FFFF', -120, 15)
@@ -86,7 +86,8 @@ def go_ahead():
         # mostra as instruções do jogo
         # os vários espaços são para deixar o texto centralizado
         instructions = '''
-Press the left and right keys to move
+Press the left and right keys or the
+    "A" and "D" keys to move
    the paddle and counter the ball.
   The goal is to hit and destroy as
        many blocks as you can.\n
@@ -113,7 +114,7 @@ Anderson de Paula Medeiros
         screen.bye()
 
     text.sety(320)
-    aux.write_message(text, 'Press "BackSpace" to return', 13)
+    aux.write_message(text, 'Press "BackSpace" or "Escape" to return', 13)
 
 
 # voltar para o menu

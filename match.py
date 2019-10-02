@@ -1,11 +1,23 @@
 import aux
 import intro
 import os
+import random
 import time
 import turtle
 
 # criando a bola
 ball = aux.drawn_sprites('circle', '#E0FFFF', 0, 0)
+
+
+# definir por onde a bola começa a se mover
+def set_ball():
+    ball.goto(0, 0)
+    possibily = random.randint(1, 2)
+    if possibily == 1:
+        ball.dx = 0.5
+    else:
+        ball.dx = -0.5
+    ball.dy = -1.5
 
 
 # movimentação da bola
@@ -49,9 +61,7 @@ score_board = aux.drawn_sprites('square', '#E0FFFF', -130, 270)
 def game_over():
 
     ball.hideturtle()
-    ball.dx = -0.2
-    ball.dy = -0.7
-    ball.goto(0, 0)
+    set_ball()
 
     paddle.hideturtle()
     paddle.goto(0, -310)
@@ -113,14 +123,10 @@ def start_game():
         life_board.clear()
         aux.write_message(life_board, 'Life: {}'.format(life), 20)
         os.system('arts/aplay arcade-bleep-sound.wav&')
-        ball.goto(0, 0)
-        ball.dx = -0.2
-        ball.dy = -0.7
+        set_ball()
 
     # fim de jogo (quantidade de vidas zerada)
     if life == 0:
-        ball.setx(100)
-        ball.sety(100)
         life_board.goto(0, 30)
         aux.write_message(life_board, 'GAME OVER', 40)
         score_board.goto(0, -30)

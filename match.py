@@ -286,7 +286,7 @@ def start_game():
             if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
                 if (brick_on[item] != 0):
                     brick_list[item].hideturtle()
-                    score += 1
+                    score += 7
                     ball.dy *= -1
                     score_board.clear()
                     aux.write_message(score_board, 'Score: ' + str(score), 20)
@@ -294,6 +294,14 @@ def start_game():
                     os.system('aplay arts/bounce.wav&')
             xpos += 100
 
+    # fim de jogo (todos os blocos foram destruídos)
+    if score == 96:
+        life_board.goto(0, 30)
+        aux.write_message(life_board, 'YOU WIN!', 40)
+        score_board.goto(0, -30)
+        aux.write_message(score_board, 'Final score: {}'.format(score), 30)
+        time.sleep(3)
+        intro.playing = False
 
     # fim de jogo (quantidade de vidas zerada)
     if life == 0:

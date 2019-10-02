@@ -199,39 +199,30 @@ def start_game():
             ball.xcor() > paddle.xcor() - 50:
         if ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 4 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * 3:
-            print(speed_ball)
             direction_angle(30)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 3 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * 2:
-            print(speed_ball)
             direction_angle(45)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 2 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * 1:
-            print(speed_ball)
             direction_angle(60)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 1 and \
                 ball.xcor() > paddle.xcor() + TAM_ONE_SEG * 0:
-            print(speed_ball)
             direction_angle(85)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 1 and \
                 ball.xcor() == paddle.xcor() + TAM_ONE_SEG * 0:
-            print(speed_ball)
             direction_angle(90)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * 0 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -1:
-            print(speed_ball)
             direction_angle(100)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * -1 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -2:
-            print(speed_ball)
             direction_angle(120)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * -2 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -3:
-            print(speed_ball)
             direction_angle(135)
         elif ball.xcor() < paddle.xcor() + TAM_ONE_SEG * -3 and \
                 ball.xcor() >= paddle.xcor() + TAM_ONE_SEG * -4:
-            print(speed_ball)
             direction_angle(150)
 
         os.system('aplay arts/bounce.wav&')

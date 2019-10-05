@@ -6,14 +6,16 @@ import random
 import time
 import turtle
 
+
 # criando a bola
 ball = aux.drawn_sprites('circle', '#E0FFFF', 0, 0)
+speed_ball = 3
 
 
 # definir por onde a bola começa a se mover
 def set_ball():
     global speed_ball
-    speed_ball = 3
+    speed_ball = 1
     ball.goto(0, -50)
     possibily = random.randint(1, 2)
     if possibily == 1:
@@ -124,6 +126,10 @@ score_hud = aux.drawn_sprites('square', '#E0FFFF', -130, 270)
 
 
 # escondendo e resetando a bola, a raquete e, os blocos os painéis
+life = 3
+score = 0
+
+
 def game_over():
     # global brick_on
     # brick_on = list(range(1, 25))
@@ -245,13 +251,12 @@ def start_game():
                ball.xcor() < posx + 35 or ball.xcor() == posx)):
                 if brick_list[linha][coluna].isvisible():
                     ball.dy *= -1
-                    score += grown[linha]
                     global speed_ball
                     speed_ball += grown[linha]*0.1
+                    score += grown[linha]
                     score_hud.clear()
                     aux.write_message(score_hud, 'Score: {}'.format(score), 20)
                 brick_list[linha][coluna].hideturtle()
-
 
     # definindo colisão com os blocos
     '''if ball.ycor() > 119.3 and ball.ycor() < 120.7:
@@ -309,7 +314,6 @@ def start_game():
                     brick_on[item] = 0
                     os.system('aplay arts/bounce.wav&')
             xpos += 100'''
-
 
     # fim de jogo (zero vida e pontuação máxima)
     if life == 0 or score == 105:

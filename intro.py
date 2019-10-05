@@ -7,9 +7,11 @@ playing = False
 
 
 # criar a tela do jogo
+screen = turtle.Screen()
+
+
 def create_screen():
     global screen
-    screen = turtle.Screen()
     screen.title('Breakout')
     screen.bgpic('arts/sky.gif')
     screen.setup(width=700, height=700)
@@ -29,7 +31,6 @@ text = aux.drawn_sprites('square', '#E0FFFF', 0, 0)
 
 # criar o menu inicial
 def create_menu():
-
     colors = ['#FF6347', '#E9967A', '#F0E68C', '#00FF7F',
               '#40E0D0', '#1E90FF', '#7B68EE', '#EE82EE']
     letters = ['B       ', ' r      ', '  e     ', '   a    ',

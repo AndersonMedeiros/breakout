@@ -15,7 +15,7 @@ speed_ball = 3
 # definir por onde a bola começa a se mover
 def set_ball():
     global speed_ball
-    speed_ball = 1
+    speed_ball = 3
     ball.goto(0, -50)
     possibily = random.randint(1, 2)
     if possibily == 1:

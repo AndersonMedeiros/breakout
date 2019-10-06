@@ -2,26 +2,20 @@ import aux
 import intro
 import math
 import os
-import random
 import time
 import turtle
 
 
 # criando a bola
 ball = aux.drawn_sprites('circle', '#E0FFFF', 0, 0)
-speed_ball = 3
 
 
 # definir por onde a bola começa a se mover
 def set_ball():
     global speed_ball
     speed_ball = 3
-    ball.goto(0, -50)
-    possibily = random.randint(1, 2)
-    if possibily == 1:
-        direction_angle(285)
-    else:
-        direction_angle(255)
+    ball.goto(0, 0)
+    direction_angle(270)
 
 
 # ângulo de direção da bola
@@ -31,11 +25,9 @@ def direction_angle(angle):
 
 
 # criando a raquete
-wid_paddle = 0.7
-len_paddle = 5
-TAM_ONE_SEG = (len_paddle*10)/4
+TAM_ONE_SEG = (5*10)/4
 paddle = aux.drawn_sprites('square', '#191970', 0, 0)
-paddle.shapesize(stretch_wid=wid_paddle, stretch_len=len_paddle)
+paddle.shapesize(stretch_wid=0.7, stretch_len=5)
 
 
 # movimentação da raquete
@@ -57,65 +49,22 @@ def move_paddle_right():
     paddle.setx(x)
 
 
-# criando os blocos e colocando-os numa matriz 5x7
-global brick_list
-brick_list = []
+# criando os blocos e colocando-os numa matriz 8x9
+global brick_matrix
+brick_matrix = []
 colors = ['#FF6347', '#E9967A', '#F0E68C', '#00FF7F',
-          '#40E0D0', '#1E90FF', '#7B68EE']
-grown = [10, 8, 5, 4, 3, 2, 1]
+          '#40E0D0', '#1E90FF', '#7B68EE', '#EE82EE']
+grown = [15, 12, 10, 8, 5, 3, 2, 1]
 y = 250
-for linha in range(7):
+for line in range(8):
     x = -300
-    brick_list.append([])
-    for coluna in range(9):
-        brick = aux.drawn_sprites('square', colors[linha], x, y)
-        brick.shapesize(stretch_wid=0.6, stretch_len=3)
-        brick_list[linha].append(brick)
+    brick_matrix.append([])
+    for column in range(9):
+        brick = aux.drawn_sprites('square', colors[line], x, y)
+        brick.shapesize(stretch_wid=1, stretch_len=3)
+        brick_matrix[line].append(brick)
         x += 75
-    y -= 15
-
-
-# criando os blocos
-# def create_brick(color):
-#    brick = aux.drawn_sprites('square', color, 0, 0)
-#    brick.shapesize(stretch_wid=0.7, stretch_len=2)
-#    return brick
-
-# criando as linhas de blocos
-# global brick_list
-# brick_list = []
-
-# def brick_wall():
-#    y_position = 240
-#    for ycolor in range(4):
-#        x_position = -260
-#        for _ in range(6):
-#            if ycolor == 0:
-#                colory = 'Red'
-#            elif ycolor == 1:
-#                colory = 'Purple'
-#            elif ycolor == 2:
-#                colory = 'Blue'
-#            elif ycolor == 3:
-#                colory = 'Green'
-#            brick = create_brick(colory)
-#            brick.goto(x_position, y_position)
-#            brick_list.append(brick)
-#            x_position += 100
-#        y_position -= 40
-
-# função para criar e mostrar os blocos
-# brick_wall()
-# global brick_len
-# brick_len = len(brick_list)
-
-# def hide_bricks():
-#    for item in range(brick_len):
-#        brick_list[item].hideturtle()
-
-# def show_bricks():
-#    for item in range(brick_len):
-#        brick_list[item].showturtle()
+    y -= 25
 
 
 # criando o painel da vida
@@ -126,14 +75,7 @@ score_hud = aux.drawn_sprites('square', '#E0FFFF', -130, 270)
 
 
 # escondendo e resetando a bola, a raquete e, os blocos os painéis
-life = 3
-score = 0
-
-
 def game_over():
-    # global brick_on
-    # brick_on = list(range(1, 25))
-    # hide_bricks()
 
     ball.hideturtle()
     set_ball()
@@ -141,9 +83,9 @@ def game_over():
     paddle.hideturtle()
     paddle.goto(0, -310)
 
-    for linha in range(7):
-        for coluna in range(9):
-            brick_list[linha][coluna].hideturtle()
+    for line in range(8):
+        for column in range(9):
+            brick_matrix[line][column].hideturtle()
 
     life_hud.clear()
     life_hud.goto(150, 270)
@@ -174,10 +116,10 @@ def start_game():
     if score == 0:
         score_hud.clear()
         aux.write_message(score_hud, 'Score: 0', 20)
-        for linha in range(7):
-            for coluna in range(9):
-                brick_list[linha][coluna].showturtle()
-        # show_bricks()
+        # mostrando os blocos
+        for line in range(8):
+            for column in range(9):
+                brick_matrix[line][column].showturtle()
 
     # movimentando a bola
     ball.setx(ball.xcor() + ball.dx)
@@ -242,87 +184,31 @@ def start_game():
         os.system('aplay arts/bounce.wav&')
 
     # colisão com os blocos
-    for linha in range(7):
-        for coluna in range(9):
-            posy = brick_list[linha][coluna].ycor()
-            posx = brick_list[linha][coluna].xcor()
-            if ((ball.ycor() >= posy - 8 and ball.ycor() <= posy + 8 or
+    for line in range(8):
+        for column in range(9):
+            posy = brick_matrix[line][column].ycor()
+            posx = brick_matrix[line][column].xcor()
+            if ((ball.ycor() >= posy - 12 and ball.ycor() <= posy + 12 or
                ball.ycor() == posy) and (ball.xcor() > posx - 35 and
                ball.xcor() < posx + 35 or ball.xcor() == posx)):
-                if brick_list[linha][coluna].isvisible():
+                if brick_matrix[line][column].isvisible():
                     ball.dy *= -1
                     global speed_ball
-                    speed_ball += grown[linha]*0.1
-                    score += grown[linha]
+                    speed_ball += grown[line]*0.05
+                    score += grown[line]
                     score_hud.clear()
                     aux.write_message(score_hud, 'Score: {}'.format(score), 20)
-                brick_list[linha][coluna].hideturtle()
-
-    # definindo colisão com os blocos
-    '''if ball.ycor() > 119.3 and ball.ycor() < 120.7:
-        xpos = -260
-        for item in range(18, 24):
-            if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
-                if (brick_on[item] != 0):
-                    brick_list[item].hideturtle()
-                    score += 1
-                    ball.dy *= -1
-                    score_board.clear()
-                    aux.write_message(score_board, 'Score: ' + str(score), 20)
-                    brick_on[item] = 0
                     os.system('aplay arts/bounce.wav&')
-            xpos += 100
-
-    if ball.ycor() > 159.3 and ball.ycor() < 160.7:
-        xpos = -260
-        for item in range(12, 18):
-            if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
-                if (brick_on[item] != 0):
-                    brick_list[item].hideturtle()
-                    score += 3
-                    ball.dy *= -1
-                    score_board.clear()
-                    aux.write_message(score_board, 'Score: ' + str(score), 20)
-                    brick_on[item] = 0
-                    os.system('aplay arts/bounce.wav&')
-            xpos += 100
-
-    if ball.ycor() > 199.3 and ball.ycor() < 200.7:
-        xpos = -260
-        for item in range(6, 12):
-            if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
-                if (brick_on[item] != 0):
-                    brick_list[item].hideturtle()
-                    score += 5
-                    ball.dy *= -1
-                    score_board.clear()
-                    aux.write_message(score_board, 'Score: ' + str(score), 20)
-                    brick_on[item] = 0
-                    os.system('aplay arts/bounce.wav&')
-            xpos += 100
-
-    if ball.ycor() > 239.3 and ball.ycor() < 240.7:
-        xpos = -260
-        for item in range(0, 6):
-            if ball.xcor() > xpos-20 and ball.xcor() < xpos+20:
-                if (brick_on[item] != 0):
-                    brick_list[item].hideturtle()
-                    score += 7
-                    ball.dy *= -1
-                    score_board.clear()
-                    aux.write_message(score_board, 'Score: ' + str(score), 20)
-                    brick_on[item] = 0
-                    os.system('aplay arts/bounce.wav&')
-            xpos += 100'''
+                brick_matrix[line][column].hideturtle()
 
     # fim de jogo (zero vida e pontuação máxima)
-    if life == 0 or score == 105:
+    if life == 0 or score == 504:
         life_hud.goto(0, 30)
         if life == 0:
             aux.write_message(life_hud, 'GAME OVER', 40)
-        elif score == 105:
+        elif score == 504:
             aux.write_message(life_hud, 'YOU WIN!', 40)
         score_hud.goto(0, -30)
         aux.write_message(score_hud, 'Final score: {}'.format(score), 30)
-        time.sleep(2)
+        time.sleep(5)
         intro.playing = False

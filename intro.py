@@ -5,20 +5,11 @@ import turtle
 # variável para verificar a inicialização do jogo
 playing = False
 
+# variável para verificar o fechamento da tela
+bye = False
 
-# criar a tela do jogo
-screen = turtle.Screen()
 
-
-def create_screen():
-    global screen
-    screen.title('Breakout')
-    screen.bgpic('arts/sky.gif')
-    screen.setup(width=700, height=700)
-    screen.tracer(100)
-    screen.update()
-    return screen
-
+# criando os sprites do menu
 global title
 title = aux.drawn_sprites('square', 'black', 0, 80)
 global options
@@ -112,8 +103,9 @@ Anderson de Paula Medeiros
         text.sety(-130)
         aux.write_message(text, developers, 20)
     elif y == -165:
-        # encerra o jogo
-        screen.bye()
+        # fecha a tela do jogo
+        global bye
+        bye = True
 
     text.sety(320)
     aux.write_message(text, 'Press "BackSpace" to return', 13)
@@ -125,6 +117,5 @@ def go_back():
     # encerra o jogo de imediato
     global playing
     playing = False
-    screen.update()
     # reacria o menu
     create_menu()

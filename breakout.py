@@ -4,8 +4,15 @@ import intro
 import match
 import turtle
 
-# criando a tela do jogo e o menu
-screen = intro.create_screen()
+# criando a tela do jogo
+screen = turtle.Screen()
+screen.title('Breakout')
+screen.bgpic('arts/sky.gif')
+screen.setup(width=700, height=700)
+screen.tracer(100)
+screen.update()
+
+# criando o menu
 intro.create_menu()
 screen.update()
 
@@ -33,3 +40,6 @@ while True:
     else:
         # escondendo os sprites do jogo
         match.game_over()
+    if intro.bye:
+        # fechando a tela
+        screen.bye()

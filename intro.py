@@ -1,6 +1,9 @@
 import aux
 import turtle
 
+# variável para acelerar a criação dos elementos na tela
+acceleration = turtle.Screen()
+acceleration.tracer(1000)
 
 # variável para verificar a inicialização do jogo
 playing = False
@@ -8,8 +11,7 @@ playing = False
 # variável para verificar o fechamento da tela
 bye = False
 
-
-# criando os sprites do menu
+# criando os elementos do menu
 global title
 title = aux.drawn_sprites('square', 'black', 0, 80)
 global options
@@ -28,18 +30,18 @@ def create_menu():
                '    k   ', '     o  ', '      u ', '       t']
     for i in range(8):
         title.color(colors[i])
-        aux.write_message(title, letters[i], 90)
+        aux.message(title, letters[i], 90)
 
     options.sety(-20)
-    aux.write_message(options, 'Play', 40)
+    aux.message(options, 'Play', 40)
     options.sety(-80)
-    aux.write_message(options, 'Help', 40)
+    aux.message(options, 'Help', 40)
     options.sety(-140)
-    aux.write_message(options, 'Credit', 40)
+    aux.message(options, 'Credit', 40)
     options.sety(-200)
-    aux.write_message(options, 'Exit', 40)
+    aux.message(options, 'Exit', 40)
     options.sety(320)
-    aux.write_message(options, 'Press "Space" to select', 13)
+    aux.message(options, 'Press "Space" to select', 13)
 
     select.goto(-120, 15)
     select.showturtle()
@@ -80,7 +82,7 @@ def go_ahead():
     elif y == -45:
         # mostra as instruções do jogo
         instructions = '''
-Press the left and right keys or the
+Press the left and right keys to move
    the paddle and counter the ball.
   The goal is to hit and destroy as
        many blocks as you can.\n
@@ -89,7 +91,7 @@ Press the left and right keys or the
             make points!
 '''
         text.sety(-170)
-        aux.write_message(text, instructions, 20)
+        aux.message(text, instructions, 20)
     elif y == -105:
         # mostra os desenvolvedores
         developers = '''
@@ -101,14 +103,14 @@ Press the left and right keys or the
 Anderson de Paula Medeiros
 '''
         text.sety(-130)
-        aux.write_message(text, developers, 20)
+        aux.message(text, developers, 20)
     elif y == -165:
         # fecha a tela do jogo
         global bye
         bye = True
 
     text.sety(320)
-    aux.write_message(text, 'Press "BackSpace" to return', 13)
+    aux.message(text, 'Press "BackSpace" to return', 13)
 
 
 # voltar para o menu

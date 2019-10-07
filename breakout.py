@@ -1,6 +1,7 @@
 # background: https://www.pexels.com/photo/milky-way-photo-2873671/
 
 import intro
+import char
 import match
 import turtle
 
@@ -9,7 +10,7 @@ screen = turtle.Screen()
 screen.title('Breakout')
 screen.bgpic('arts/sky.gif')
 screen.setup(width=700, height=700)
-screen.tracer(100)
+screen.tracer(1000)
 screen.update()
 
 # criando o menu
@@ -27,8 +28,8 @@ screen.onkeypress(intro.go_back, 'BackSpace')
 screen.update()
 
 # movimentação da raquete durante o jogo
-screen.onkeypress(match.move_paddle_left, 'Left')
-screen.onkeypress(match.move_paddle_right, 'Right')
+screen.onkeypress(char.move_paddle_left, 'Left')
+screen.onkeypress(char.move_paddle_right, 'Right')
 screen.update()
 
 # aqui começa o jogo de fato

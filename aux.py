@@ -1,10 +1,8 @@
 import turtle
 
-# Funções auxiliares para desenhar sprites e escrever mensagens na tela
-
 
 # escrever mensagens e textos
-def write_message(sprite, text, size):
+def message(sprite, text, size):
     sprite.write(text, align='center', font=('Tlwg Typo', size, 'bold'))
 
 

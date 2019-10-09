@@ -1,25 +1,29 @@
 import aux
 import turtle
 
-# variável para acelerar a criação dos elementos na tela
-acceleration = turtle.Screen()
-acceleration.tracer(1000)
 
-# variável para verificar a inicialização do jogo
+# acelera a criação dos elementos na tela
+acc = turtle.Screen()
+acc.tracer(1000)
+
+
+# verifica a inicialização do jogo
 playing = False
 
-# variável para verificar o fechamento da tela
-bye = False
+
+# verifica o fechamento da tela
+finish = False
+
 
 # criando os elementos do menu
 global title
-title = aux.drawn_sprites('square', 'black', 0, 80)
+title = aux.drawn_element('square', 'black', 0, 80)
 global options
-options = aux.drawn_sprites('square', '#E0FFFF', 0, -20)
+options = aux.drawn_element('square', '#E0FFFF', 0, -20)
 global select
-select = aux.drawn_sprites('arrow', '#E0FFFF', -120, 15)
+select = aux.drawn_element('arrow', '#E0FFFF', -120, 15)
 global text
-text = aux.drawn_sprites('square', '#E0FFFF', 0, 0)
+text = aux.drawn_element('square', '#E0FFFF', 0, 0)
 
 
 # criar o menu inicial
@@ -69,14 +73,14 @@ def go_ahead():
     # impede que o usuário selecione as opções enquanto elas estão invisíveis
     select.sety(300)
 
-    # apaga o menu
+    # apagando o menu
     select.hideturtle()
     title.clear()
     options.clear()
 
     # interior de cada opção do menu
     if y == 15:
-        # inicia o jogo
+        # inicia uma partida
         global playing
         playing = True
     elif y == -45:
@@ -105,9 +109,9 @@ Anderson de Paula Medeiros
         text.sety(-130)
         aux.message(text, developers, 20)
     elif y == -165:
-        # fecha a tela do jogo
-        global bye
-        bye = True
+        # fecha a tela
+        global finish
+        finish = True
 
     text.sety(320)
     aux.message(text, 'Press "BackSpace" to return', 13)
@@ -116,7 +120,7 @@ Anderson de Paula Medeiros
 # voltar para o menu
 def go_back():
     text.clear()
-    # encerra o jogo de imediato
+    # encerra uma partida de imediato
     global playing
     playing = False
     # reacria o menu

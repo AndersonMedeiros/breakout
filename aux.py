@@ -2,17 +2,17 @@ import turtle
 
 
 # escrever mensagens e textos
-def message(sprite, text, size):
-    sprite.write(text, align='center', font=('Tlwg Typo', size, 'bold'))
+def message(element, text, size):
+    element.write(text, align='center', font=('Tlwg Typo', size, 'bold'))
 
 
-# desenhar quaisquer sprites (inclusive a bola e a raquete)
-def drawn_sprites(shape, color, x, y):
-    sprite = turtle.Turtle()
-    sprite.hideturtle()
-    sprite.speed(0)
-    sprite.shape(shape)
-    sprite.color(color)
-    sprite.penup()
-    sprite.goto(x, y)
-    return sprite
+# desenhar quaisquer elementos (inclusive a bola e a raquete)
+def drawn_element(shape, color, x, y):
+    element = turtle.Turtle()
+    element.hideturtle()
+    element.speed(0)
+    element.shape(shape)
+    element.color(color)
+    element.penup()
+    element.goto(x, y)
+    return element

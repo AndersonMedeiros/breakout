@@ -1,7 +1,8 @@
-# background: https://www.pexels.com/photo/milky-way-photo-2873671/
+# background image: https://www.pexels.com/photo/milky-way-photo-2873671/
+# sound effect: https://freesound.org/people/Kodack/sounds/258020/
 
-import intro
 import char
+import intro
 import match
 import turtle
 
@@ -32,15 +33,15 @@ screen.onkeypress(char.move_paddle_left, 'Left')
 screen.onkeypress(char.move_paddle_right, 'Right')
 screen.update()
 
-# aqui começa o jogo de fato
+# início do jogo
 while True:
     screen.update()
     if intro.playing:
-        # mostrando os sprites do jogo
+        # mostrando os elementos da partida
         match.start_game()
     else:
-        # escondendo os sprites do jogo
+        # escondendo os elementos da partida
         match.game_over()
-    if intro.bye:
+    if intro.finish:
         # fechando a tela
         screen.bye()

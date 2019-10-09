@@ -6,37 +6,41 @@ import time
 import turtle
 
 
-# variável para acelerar a criação dos elementos na tela
-acceleration = turtle.Screen()
-acceleration.tracer(1000)
+# acelera a criação dos elementos na tela
+acc = turtle.Screen()
+acc.tracer(1000)
 
 
-# encerrando uma partida do jogo
-# escondendo e resetando a bola, a raquete, os blocos e os painéis
+# encerrar uma partida do jogo
 def game_over():
 
+    # resetando a bola
     char.ball.hideturtle()
     char.set_ball()
 
+    # resetando a raquete
     char.paddle.hideturtle()
     char.paddle.setx(0)
 
+    # resetando os blocos
     for line in range(8):
         for column in range(9):
             char.brick_matrix[line][column].hideturtle()
 
+    # resetando o painel da vida
     char.life_hud.clear()
     char.life_hud.goto(150, 270)
     global life
     life = 3
 
+    # resetando o painel da pontuação
     char.score_hud.clear()
     char.score_hud.goto(-130, 270)
     global score
     score = 0
 
 
-# iniciando uma partida do jogo
+# iniciar uma partida do jogo
 def start_game():
 
     # mostrando a bola e a raquete
@@ -153,12 +157,12 @@ def start_game():
                 os.system('aplay arts/bounce.wav&')
                 char.brick_matrix[line][column].hideturtle()
 
-    # fim de jogo (zero vida e pontuação máxima)
-    if life == 0 or score == 504:
+    # fim de jogo (vida zerada ou pontuação máxima)
+    if life == 0 or score == 360:
         char.life_hud.goto(0, 0)
         if life == 0:
             aux.message(char.life_hud, 'GAME OVER', 40)
-        elif score == 504:
+        else:
             aux.message(char.life_hud, 'YOU WIN!', 40)
         char.score_hud.goto(0, -60)
         aux.message(char.score_hud, 'Final score: {}'.format(score), 30)

@@ -150,7 +150,7 @@ def start_game():
                char.ball.xcor() == brick_x) and
                char.brick_matrix[line][column].isvisible()):
                 char.ball.dy *= -1
-                char.speed_ball += char.growth[line]*0.03
+                char.speed_ball += char.growth[line]*0.015
                 score += char.growth[line]
                 char.score_hud.clear()
                 aux.message(char.score_hud, 'Score: {}'.format(score), 20)

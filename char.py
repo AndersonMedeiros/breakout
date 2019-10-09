@@ -15,7 +15,7 @@ ball = aux.drawn_element('circle', '#E0FFFF', 0, 0)
 # bola: velocidade e movimentação iniciais
 def set_ball():
     global speed_ball
-    speed_ball = 3
+    speed_ball = 1.5
     ball.goto(0, 0)
     direction_angle(270)
 

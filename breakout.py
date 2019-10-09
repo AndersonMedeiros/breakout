@@ -1,6 +1,6 @@
 # background image: https://www.pexels.com/photo/milky-way-photo-2873671/
 # sound effect: https://freesound.org/people/Kodack/sounds/258020/
-
+import os
 import char
 import intro
 import match

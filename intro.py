@@ -27,7 +27,7 @@ text = aux.drawn_element('square', '#E0FFFF', 0, 0)
 
 
 # criar o menu inicial
-def create_menu():
+def create_menu():    
     colors = ['#FF6347', '#E9967A', '#F0E68C', '#00FF7F',
               '#40E0D0', '#1E90FF', '#7B68EE', '#EE82EE']
     letters = ['B       ', ' r      ', '  e     ', '   a    ',

@@ -36,7 +36,7 @@ paddle.shapesize(stretch_wid=0.7, stretch_len=5)
 def move_paddle_left():
     x = paddle.xcor()
     if x > -300:
-        x -= 30
+        x -= 50
     else:
         x = -300
     paddle.setx(x)
@@ -45,7 +45,7 @@ def move_paddle_left():
 def move_paddle_right():
     x = paddle.xcor()
     if x < 300:
-        x += 30
+        x += 50
     else:
         x = 300
     paddle.setx(x)

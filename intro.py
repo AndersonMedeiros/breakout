@@ -45,7 +45,7 @@ def create_menu():
     options.sety(-200)
     aux.message(options, 'Exit', 40)
     options.sety(320)
-    aux.message(options, 'Press "Space" to select', 13)
+    aux.message(options, 'Press "Space" or "Return" to select', 13)
 
     select.goto(-120, 15)
     select.showturtle()
@@ -86,7 +86,8 @@ def go_ahead():
     elif y == -45:
         # mostra as instruções do jogo
         instructions = '''
-Press the left and right keys to move
+    Press the left and right keys
+   or the "a" and "d" keys to move
    the paddle and counter the ball.
   The goal is to hit and destroy as
        many blocks as you can.\n
@@ -114,7 +115,7 @@ Anderson de Paula Medeiros
         finish = True
 
     text.sety(320)
-    aux.message(text, 'Press "BackSpace" to return', 13)
+    aux.message(text, 'Press "BackSpace" or "Escape" to return', 13)
 
 
 # voltar para o menu
